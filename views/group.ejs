@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Futiba Club - Fullstack Academy - DevPleno</title>
+    <!-- Font Awesome SVG -->
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/futiba-interno.css" rel="stylesheet">
+</head>
+
+<body class="divContainerPrincipal">
+  <header>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark green fixed-top scrolling-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="/img-futiba-club/logo.png" height="30" alt="Futiba Club">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+          <% include elements/menu-items %>                    
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+<div class="container divContainerPrincipal">
+  <section class="content">
+    <div class="container">
+      <div class="row">
+        <h3 class="text-center font-bold font-up py-4 col"><%= group.name %></h3>
+        </div>
+          <% if(pendings.length > 0 && group.role === "owner") { %>
+            <button class="btn btn-outline-danger waves-effect col" data-target="#modalNewUsersGroup" data-toggle="modal"><i class="fas fa-users"></i> Aceitar novos membros</button>
+          <% } %>
+        </div>
+  <div class="container">
+    <div class="row">
+      <% if(group.role === 'owner') { %>
+      <% if(pendings.length > 0) { %>
+        <% include elements/modal-new-users-group %>
+      <% } %>
+      <% } %>
+      <% if(group.role === 'pending') { %>
+        <p class="alert alert-info alert-dismissible fade show">
+          <strong>Você precisa ser aprovado pelo Administrador</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </p>
+      <% }else { %>
+          <div class="container"> 
+            <div class="row">
+              <% games.forEach( game => { %>
+                <div class="card card-dark text-center col-6 divCardJogos">
+                  <div class="card-body">
+                    <h4 class="card-title">Jogo Nº<%= game.id %></h4>
+                    <hr>
+                  <form method="post">
+                    <div>
+                      <table class="table table-bordered table-responsive-sm table-striped text-center">
+                        <thead class="mdb-color lighten-4">
+                          <tr>
+                              <th class="text-center font-bold">Time A</th>
+                              <th class="text-center font-bold">VS</th>
+                              <th class="text-center font-bold">Time B</th>
+                              <th class="text-center font-bold">Pontuação</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                              <td class="pt-3-half">
+                              <% if(!game.guess_a) { %>
+                                <%= game.team_a %>
+                                <select class="form-control" name="team_<%= game.id %>[a]">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                  <option>6</option>
+                                  <option>7</option>
+                                  <option>8</option>
+                                  <option>9</option>
+                                  <option>10</option>
+                                </select>
+                                <% } else { %>
+                                <%= game.team_a %> - <strong><%= game.guess_a %></strong>
+                                <% } %>
+                              </td>
+                              <td class="pt-3-half">VS</td>
+                              <td class="pt-3-half">
+                              <% if(!game.guess_b) { %>
+                                <%= game.team_b %>
+                                <select class="form-control" name="team_<%= game.id %>[b]">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                  <option>6</option>
+                                  <option>7</option>
+                                  <option>8</option>
+                                  <option>9</option>
+                                  <option>10</option>
+                                </select>
+                                <% } else { %>
+                                  <%= game.team_b %> - <strong><%= game.guess_b %></strong>
+                                <% } %>
+                              </td>
+                              <td><strong><%= game.score %></strong></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <% if(!game.guess_a && !game.guess_b) { %> 
+                      <input type="submit" class="btn btn-success" value="Salvar aposta">
+                      <% } %>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+        <% } %>
+    </div>
+  </div>
+  </section>
+  </div>
+    
+ <% include elements/footer %>

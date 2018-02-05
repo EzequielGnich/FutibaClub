@@ -1,0 +1,38 @@
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+        <a class="nav-link" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/groups">Grupos</a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="modal" data-target="#modalClassification">Classificação</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link waves-effect waves-light" data-toggle="modal" data-target="#modalContactForm">Contato</a>
+    </li>
+    
+    <% if(user) { %>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+        <%= user.name %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <% if(user.role === 'root'){ %>
+            <a class="dropdown-item" href="/admin/games">Adicionar Jogos</a>
+            <% } %>
+            <% if(user) { %>            
+            <hr>
+            <a class="dropdown-item" href="/logout">Logout</a>
+            <% } %>
+        </div>
+    </li>
+    <% }else{ %>
+        <li class="nav-item">
+            <a class="nav-link waves-effect waves-light" data-toggle="modal" data-target="#modalLogin">Entrar</a>
+        </li>
+    <% } %>
+</ul>
+

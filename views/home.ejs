@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" class="full-height">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Futiba Club - Fullstack Academy - DevPleno</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <!--<link href="/css/mdb.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.5/css/mdb.min.css">
+    <!-- Your custom styles (optional) -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/futiba.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <!--Navbar-->
+        <nav class="navbar-home navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img src="/img-futiba-club/logo.png" height="30" alt="Futiba Club">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+                    <% include elements/menu-items %>
+                </div>
+            </div>
+        </nav>
+    
+        <!--Intro Section-->
+        <section class="view intro-2 hm-gradient">
+            <div class="full-bg-img">
+                <div class="container flex-center">
+                    <div class="row flex-center">
+                        <div class="col-md-10 col-lg-6 text-center text-md-left margins">
+                            <div class="white-text">
+                                <img src="/img-futiba-club/logo2.png" />
+                                <h1 class="h1-responsive font-bold mt-sm-5 wow fadeInLeft" data-wow-delay="0.3s">Desafie seus amigos</h1>
+                                <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                                <h6 class="wow fadeInLeft" data-wow-delay="0.3s">Quem consegue acertar mais jogos da Copa e do Brasileirão?
+                                </h6>
+                                <br>
+                                <% if(!user) { %>
+                                    <a class="btn btn-white dark-grey-text font-bold wow fadeInLeft" data-wow-delay="0.3s" data-toggle="modal" data-target="#modalRegister">Criar conta</a>
+                                <% } %>
+                                <a class="btn btn-outline-white wow fadeInLeft" data-toggle="modal" data-target="#modalClassification">Classificação geral</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 hidden-md-down wow fadeInRight d-flex justify-content-center" data-wow-delay="0.3s">
+                            <img src="/img-futiba-club/mock.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <% include elements/modal-contact %>
+
+    <% include elements/modal-classification %>
+
+    <% include elements/modal-login %>
+    
+    <% include elements/modal-register %>
+        
+    </header>
+    
+    <% include elements/footer %>

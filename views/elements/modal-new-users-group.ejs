@@ -1,0 +1,61 @@
+<!-- Modal -->
+<div class="modal fade right" id="modalNewUsersGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fluid modal-right" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Novos Usuários</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body col-12 row">
+                <% pendings.forEach( user => { %>
+                    <div class="card card-dark text-center col-6 divCardJogos" style="margin-top: 3em;">
+                    <div class="card-body">
+                        <h4 class="card-title"># <%= user.id %> #</h4>
+                        <hr>
+                        <div>
+                        <table class="table table-bordered table-responsive-md table-striped text-center">
+                            <thead class="mdb-color lighten-4">
+                            <tr>
+                                <th class="text-center font-bold">#</th>
+                                <th class="text-center font-bold">Grupo</th>
+                                <th><i class="fa fa-check-circle" ></i></th>
+                                <th class="text-center font-bold" scope="col" colspan="2">Ações</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="pt-3-half" contenteditable="true"><%= user.id %></td>
+                                <td class="pt-3-half">
+                                    <a href="/groups/<%= user.id %>">
+                                    <%= user.name %>
+                                    </a>
+                                </td>
+                                <td class="pt-3-half"><%= user.role %></td>
+                                <td>
+                                    <a class="btn btn-danger btn-rounded btn-sm my-0" href="/groups/<%= group.id %>/pending/<%= user.id %>/yes">
+                                    <i class="fas fa-user-plus"></i>
+                                    Permitir
+                                    </a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger btn-rounded btn-sm my-0" href="/groups/<%= group.id %>/pending/<%= user.id %>/no">
+                                    <i class="fas fa-user-times"></i>
+                                    Negar
+                                    </a>
+                                </td> 
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    </div>
+                <% }) %>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

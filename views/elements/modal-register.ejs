@@ -1,0 +1,39 @@
+<!-- Inicio modal de registro-->
+    <div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal" role="document">
+            <div class="modal-content">
+                <div class="modal-header green accent-4 white-text">
+                    <h4 class="title"><i class="fa fa-user-plus"></i> Registrar</h4>
+                    <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- Inicio form de registro -->
+                <form method="post" action="/home/new-account">
+                    <div class="modal-body">
+                        <div class="md-form form-sm">
+                            <i class="fa fa-envelope prefix"></i>
+                            <input type="text" id="form32" class="form-control" name="name" required>
+                            <label for="form32">Nome</label>
+                        </div>
+                        <div class="md-form form-sm">
+                            <i class="fa fa-lock prefix"></i>
+                            <input type="email" id="form33" class="form-control" name="email" required>
+                            <label for="form33">E-mail</label>
+                        </div>
+                        <div class="md-form form-sm">
+                            <i class="fa fa-lock prefix"></i>
+                            <input type="text" id="form34" class="form-control" name="passwd" required>
+                            <label for="form34">Senha</label>
+                        </div>
+                        <div class="text-center mt-2">
+                            <button class="btn btn-success">Registrar <i class="fas fa-sign-in-alt"></i></button>
+                            <button type="button" class="btn btn-outline-warning waves-effect ml-auto" data-dismiss="modal">Sair</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Fim form de registro -->
+            </div>
+        </div>
+    </div>
+<!-- Fim modal de registro-->

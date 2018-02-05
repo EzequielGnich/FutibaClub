@@ -1,0 +1,32 @@
+<!-- Inicio modal de login -->
+    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal" role="document">
+            <div class="modal-content">
+                <div class="modal-header green accent-4 white-text">
+                    <h4 class="title"><i class="fa fa-user"></i>Entrar</h4>
+                    <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="/home/login">
+                    <div class="modal-body">
+                        <div class="md-form form-sm">
+                            <i class="fa fa-envelope prefix"></i>
+                            <input type="text" id="form30" class="form-control" name="email">
+                            <label for="form30">E-mail</label>
+                        </div>
+                        <div class="md-form form-sm">
+                            <i class="fa fa-lock prefix"></i>
+                            <input type="password" id="form31" class="form-control" name="passwd">
+                            <label for="form31">Senha</label>
+                        </div>
+                        <div class="text-center mt-2">
+                            <button class="btn btn-success">Entrar<i class="fas fa-sign-in-alt ml-1"></i></button>
+                            <button type="button" class="btn btn-outline-warning waves-effect ml-auto" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- fim modal de login -->

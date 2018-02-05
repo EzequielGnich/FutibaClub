@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Futiba Club - Fullstack Academy - DevPleno</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/futiba-interno.css" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark green fixed-top scrolling-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="/img-futiba-club/logo.png" height="30" alt="Futiba Club">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+          <% include elements/menu-items %>                    
+        </div>
+      </div>
+    </nav>
+  </header>
+
+<div class="container divContainerPrincipal">
+  <section class="content">
+    <div class="container">
+        <div class="card">
+          <h3 class="card-header text-center font-bold font-up py-4">Grupos</h3>
+          <div class="card-body">
+          <form method="post">
+            <div class="md-form">
+              <i class="fa fa-chevron-right prefix grey-text"></i>
+                <input type="text" class="form-control" required name="name" />
+                <label for="orangeForm-name">Nome do grupo</label>
+            </div>
+            <span class="table-add float-right mb-3 mr-2">
+              <a class="text-success">
+                <button class="btn btn-outline-success waves-effect"><i class="fas fa-users"></i> Criar grupo</button>
+              </a>
+            </span>               
+          </form>
+        </div>
+    </div>
+  </section>
+
+    <section class="">
+  <div class="container">
+    <div class="row">                                                                    
+      <% groups.forEach( group => { %>
+        <div class="card card-dark text-center col-6 divCardJogos" style="margin-top: 3em;">
+          <div class="card-body">
+            <h4 class="card-title"><%= group.name %></h4>
+            <hr>
+            <div>
+              <table class="table table-bordered table-responsive-md table-striped text-center">
+                <thead class="mdb-color lighten-4">
+                  <tr>
+                      <th class="text-center font-bold">#</th>
+                      <th class="text-center font-bold">Grupo</th>
+                      <th>Situação</th>
+                      <% if(!group.role || group.role === 'owner') { %>
+                      <th class="text-center font-bold" scope="col" colspan="2">Ações</th>
+                      <% } %>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                      <td class="pt-3-half" contenteditable="true"><%= group.id %></td>
+                      <td class="pt-3-half">
+                        <a href="/groups/<%= group.id %>">
+                          <%= group.name %>
+                        </a>
+                      </td>
+                      <td class="pt-3-half"><%= group.role %></td>
+                      <% if(group.role === 'owner') { %>
+                      <td><a class="btn btn-danger btn-rounded btn-sm my-0" href="/admin/group/delete/<%= group.id %>"><i class="fas fa-trash"></i> Excluir</a></td>
+                      <% } %>
+                      <% if(!group.role) { %>
+                      <td><a class="btn btn-danger btn-rounded btn-sm my-0" href="/groups/<%= group.id %>/join">Solicitar entrada</a></td>
+                      <% } %>
+                      <% if(group.role === 'pending') { %>
+                      <td><a class="btn btn-danger btn-rounded btn-sm my-0" href="/groups/<%= group.id %>/join">Cancelar</a></td>
+                      <% } %>
+                      
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+    </div>
+  </div>
+  </section>
+  </div>
+    
+ <% include elements/footer %>

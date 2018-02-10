@@ -22,9 +22,9 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <% if(user.role === 'root'){ %>
             <a class="dropdown-item" href="/admin/games">Adicionar Jogos</a>
+            <hr>
             <% } %>
             <% if(user) { %>            
-            <hr>
             <a class="dropdown-item" href="/logout">Logout</a>
             <% } %>
         </div>

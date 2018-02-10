@@ -26,7 +26,7 @@ const init = connection => {
         })
     })
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    // Aceitar ou negar a entrada de uma pessoa no grupo no qual eu sou adm
+    // Aceitar ou negar a entrada de uma pessoa no grupo no qual eu sou owner
     app.get('/:id/pending/:idGU/:op', async(req, res) => {
         const [ group ] = await connection.execute('select * from groups left join groups_users on groups_users.group_id = groups.id and groups_users.user_id = ? where groups.id = ?', [
             req.session.user.id,
@@ -49,6 +49,13 @@ const init = connection => {
                 res.redirect('/groups/'+req.params.id)
             }
         }
+    })
+
+    app.get('/delete/:id', async(req, res) => {
+        await connection.execute('delete from groups where groups.id = ? limit 1;', [
+            req.params.id
+        ])
+        res.redirect('/groups')
     })
 
     app.get('/:id', async(req,res) => {

@@ -7,3 +7,12 @@
 .divCardJogos {
     margin-top: 2em;
 }
+
+.bodyBackgroundColor {
+    background-color: #47c41a !important;
+}
+
+.colorH3NameGroup {
+    color: #FFF !important;
+    text-shadow: 0px 0px 15px #000;
+}

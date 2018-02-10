@@ -17,7 +17,7 @@
     <link href="/css/futiba-interno.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bodyBackgroundColor">
   <header>
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark green fixed-top scrolling-navbar">
@@ -30,7 +30,10 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
-          <% include elements/menu-items %>                    
+
+          <!-- Insere modal de contato na view groups -->
+          <% include elements/menu-items %>
+
         </div>
       </div>
     </nav>
@@ -72,8 +75,13 @@
                   <tr>
                       <th class="text-center font-bold">#</th>
                       <th class="text-center font-bold">Grupo</th>
+                      <% if(group.role === 'user' || group.role === 'owner'){ %>
+                      <th class="text-center font-bold">Tipo de usuário</th>
+                      <% } %>
+                      <% if(group.role === 'pending' || group.role === 'user') { %> 
                       <th>Situação</th>
-                      <% if(!group.role || group.role === 'owner') { %>
+                      <% } %>
+                      <% if(!group.role || group.role === 'owner' || group.role === 'pending') { %>
                       <th class="text-center font-bold" scope="col" colspan="2">Ações</th>
                       <% } %>
                   </tr>
@@ -81,14 +89,15 @@
                 <tbody>
                   <tr>
                       <td class="pt-3-half" contenteditable="true"><%= group.id %></td>
-                      <td class="pt-3-half">
-                        <a href="/groups/<%= group.id %>">
-                          <%= group.name %>
-                        </a>
-                      </td>
+                      <td class="pt-3-half"><a href="/groups/<%= group.id %>"><%= group.name %></a></td>
+                      <% if(group.role) { %>
                       <td class="pt-3-half"><%= group.role %></td>
+                      <% } %>
                       <% if(group.role === 'owner') { %>
-                      <td><a class="btn btn-danger btn-rounded btn-sm my-0" href="/admin/group/delete/<%= group.id %>"><i class="fas fa-trash"></i> Excluir</a></td>
+                      <td><a class="btn btn-danger btn-rounded btn-sm my-0" href="groups/delete/<%= group.id %>"><i class="fas fa-trash"></i> Excluir</a></td>
+                      <% } %>
+                      <% if(group.role === 'user') { %>
+                      <td>approved</td>
                       <% } %>
                       <% if(!group.role) { %>
                       <td><a class="btn btn-danger btn-rounded btn-sm my-0" href="/groups/<%= group.id %>/join">Solicitar entrada</a></td>
@@ -108,5 +117,9 @@
   </div>
   </section>
   </div>
-    
- <% include elements/footer %>
+
+<% include elements/modal-contact %>
+
+<% include elements/modal-classification %>
+
+<% include elements/footer %>
